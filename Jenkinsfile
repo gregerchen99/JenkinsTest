@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                git 'https://github.com/gregerchen99/JenkinsTest.git'
+                git 'https://github.com/gregerchen99/JenkinsDependencyCheckTest.git'
             }
         }
 
@@ -25,22 +25,20 @@ pipeline {
             }
         }
 
-        stage('Integration UI Test') {
-            stage('Headless Browser Test') {
-                agent {
-                    docker {
-                        image 'maven:3-alpine' 
-                        args '-v /root/.m2:/root/.m2' 
-                    }
+        stage('Headless Browser Test') {
+            agent {
+                docker {
+                    image 'maven:3-alpine' 
+                    args '-v /root/.m2:/root/.m2' 
                 }
-                steps {
-                    sh 'mvn -B -DskipTests clean package'
-                    sh 'mvn test'
-                }
-                post {
-                    always {
-                        junit 'target/surefire-reports/*.xml'
-                    }
+            }
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
