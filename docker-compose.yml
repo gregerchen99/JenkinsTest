@@ -26,6 +26,13 @@ services:
     volumes:
       - ./source:/var/www/html
 
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:latest
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    ports:
+      - '9000:9000'
 volumes:
   jenkins_data:
     driver: local

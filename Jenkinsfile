@@ -13,15 +13,27 @@ pipeline {
             }
         }
 
-        stage('build'){
+        stage('UI Test'){
             steps {
                 sh 'python3 /var/jenkins_home/workspace/JenkinsTest/source/test.py'
+            }
+        }
+
+        stage('SonarQube'){
+            steps {
+                def scannerHome = tool 'SonarQube'
+                withSonarQubeEnv('SonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP -Dsonar.sources=."
+                }
             }
         }
     }   
     post {
         success {
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+        }
+        always {
+            recordIssues enabledForFailure: true, tool: sonarQube()
         }
     }
 }
