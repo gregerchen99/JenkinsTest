@@ -5,6 +5,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+# Set desired capabilities for the browser
+capabilities = DesiredCapabilities.CHROME.copy()
+
 # Initialize Chrome WebDriver
 driver = webdriver.Remote(
     command_executor='http://localhost:4444/wd/hub',
