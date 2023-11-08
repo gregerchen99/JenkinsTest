@@ -1,5 +1,5 @@
 pipeline {
-	agent none
+	agent any
 	stages {
 		/*
 		 * Clone the repository on Github
