@@ -5,6 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
+chrome_driver_path = '/var/jenkins_home/tools/chromedriver/chromedriver'
+options = webdriver.ChromeOptions()
 # Initialize Chrome WebDriver
 driver = webdriver.Chrome()
 
