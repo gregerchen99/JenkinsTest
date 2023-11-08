@@ -1,17 +1,20 @@
 pipeline {
-    agent any
-
+    agent none
     stages {
-        stage('Checkout SCM') {
-            steps {
-                git 'https://github.com/gregerchen99/JenkinsTest.git'
+        stage('Headless Browser Test') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/.m2'
+                }
             }
-        }
-
-        stage('Execute Python Script') {
             steps {
-                script {
-                    sh '/var/jenkins_home/workspace/JenkinsTest/source/test.py'
+                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
