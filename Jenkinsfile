@@ -8,14 +8,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                script {
-                    sh 'pip install selenium'  // Install selenium module
-                }
-            }
-        }
-
         stage('Execute Python Script') {
             steps {
                 script {
