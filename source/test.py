@@ -6,8 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Initialize Chrome WebDriver
-driver = webdriver.Remote(
-    command_executor=SelenoidIP/wd/hub)
+WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
 
 # Test Case 1: Valid password
 def test_case_1():
