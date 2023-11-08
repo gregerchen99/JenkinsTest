@@ -15,7 +15,7 @@ driver = webdriver.Chrome(options=options)
 
 # Test Case 1: Valid password
 def test_case_1():
-    driver.get("http://localhost")  # Replace with the actual file path
+    driver.get("http://172.19.0.3")  # Replace with the actual file path
     WebDriverWait(driver, 10).until(EC.title_is("Login"))
 
     password_field = driver.find_element(By.ID, "password")
@@ -30,7 +30,7 @@ def test_case_1():
 
 # Test Case 2: Invalid password
 def test_case_2():
-    driver.get("http://localhost")  # Replace with the actual file path
+    driver.get("http://172.19.0.3")  # Replace with the actual file path
     WebDriverWait(driver, 10).until(EC.title_is("Login"))
 
     password_field = driver.find_element(By.ID, "password")
