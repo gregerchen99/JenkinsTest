@@ -1,10 +1,14 @@
 pipeline {
+<<<<<<< Updated upstream
 	agent none
+=======
+>>>>>>> Stashed changes
 	stages {
 		/*
 		 * Clone the repository on Github
 		 */
 		stage('Checkout SCM') {
+			agent any
 			steps {
 				git 'https://github.com/gregerchen99/JenkinsTest.git'
 			}
@@ -13,6 +17,7 @@ pipeline {
 		 * Perform OWASP Dependency Check
 		 */
 		stage('OWASP DependencyCheck') {
+			agent any
 			steps {
 				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
 			}
