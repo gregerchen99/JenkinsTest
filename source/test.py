@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 chrome_driver_path = '/var/jenkins_home/tools/chromedriver/chromedriver'
 options = webdriver.ChromeOptions()
 # Initialize Chrome WebDriver
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
 
 # Test Case 1: Valid password
 def test_case_1():
