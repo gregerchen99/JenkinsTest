@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: git 'https://github.com/gregerchen99/JenkinsTest.git'
+                git branch: 'master', url:'https://github.com/gregerchen99/JenkinsTest.git'
             }
         }
         stage('Code Quality Check via SonarQube') {
