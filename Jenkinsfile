@@ -12,6 +12,12 @@ pipeline {
                 dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
             }
         }
+
+        stage('build'){
+            steps {
+                sh 'python3 /var/jenkins_home/workspace/JenkinsTest/source/test.py'
+            }
+        }
     }   
     post {
         success {
