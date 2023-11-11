@@ -39,7 +39,7 @@ pipeline {
         }
         always {
             script {
-                def issues = scanForIssues tool: [$class: 'SonarQube']
+                def issues = recordIssues tool: [$class: 'SonarQube']
                 recordIssues tool: [$class: 'SonarQube'], issues: issues
             }
         }
