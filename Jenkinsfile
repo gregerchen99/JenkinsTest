@@ -39,9 +39,8 @@ pipeline {
         //}
         always {
             script {
-                def issues = recordIssues tool: [$class: 'SonarQube']
+                def issues = scanForIssues tool: [$class: 'SonarQube']
                 recordIssues tool: [$class: 'SonarQube'], issues: issues
-            }
         }
     }
 }
