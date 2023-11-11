@@ -38,11 +38,7 @@ pipeline {
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
         }
         always {
-            script{
-                def issues = scanForIssues tool: [$class:'SonarQube']
-                recordIssues tool: [$class:'SonarQube'], issues:issues
-            }
-            //recordIssues enabledForFailure: true, tool: sonarQube()
+            recordIssues enabledForFailure: true, tool: sonarQube()
         }
     }
 }
