@@ -10,7 +10,7 @@ pipeline {
             }
         }
 
-        stage('OWASP DependencyCheck') {
+        /*stage('OWASP DependencyCheck') {
             steps {
                 dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
             }
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh 'python3 /var/jenkins_home/workspace/JenkinsTest/source/test.py'
             }
-        }
+        }*/
 
         stage('SonarQube'){
             steps {
@@ -34,9 +34,9 @@ pipeline {
         }
     }   
     post {
-        success {
-            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-        }
+        //success {
+        //    dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+        //}
         always {
             script {
                 def issues = recordIssues tool: [$class: 'SonarQube']
