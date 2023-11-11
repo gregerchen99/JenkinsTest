@@ -22,8 +22,8 @@ pipeline {
         stage('SonarQube'){
             steps {
                 script {
-                    def scannerHome = tool 'SonarQube12';
-                    withSonarQubeEnv('SonarQube12') {
+                    def scannerHome = tool 'SonarQube';
+                    withSonarQubeEnv('SonarQube') {
                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP -Dsonar.sources=."
                     }
                 }   
@@ -35,7 +35,11 @@ pipeline {
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
         }
         always {
-            recordIssues enabledForFailure: true, tool: sonarQube()
+            script{
+                def issues = scanForIssues tool: [$class:'SonarQube']
+                recordIssues tool: [$class:'SonarQube'], issues:issues
+            }
+            //recordIssues enabledForFailure: true, tool: sonarQube()
         }
     }
 }
