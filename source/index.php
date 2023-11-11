@@ -31,8 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         else if ($isExists == False)
         {
         	?>
-        	<html>
-        		<head>
+            <!DOCTYPE html>
+        	<html lang="en">        		
+                <head>
     				<title>Home</title>
 				</head>
 				<body>
