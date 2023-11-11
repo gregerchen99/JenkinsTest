@@ -38,7 +38,7 @@ pipeline {
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
         }
         always {
-            recordIssues enabledForFailure: true, tool: sonarQube()
+            recordIssues enabledForFailure: true, tool: 'SonarQube'
         }
     }
 }
