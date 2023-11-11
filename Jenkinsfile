@@ -4,7 +4,6 @@ pipeline {
         nodejs "nodejs"
     }
     stages {
-        /*
         stage('Checkout SCM') {
             steps {
                 git 'https://github.com/gregerchen99/JenkinsTest.git'
@@ -22,7 +21,6 @@ pipeline {
                 sh 'python3 /var/jenkins_home/workspace/JenkinsTest/source/test.py'
             }
         }
-        */
         stage('SonarQube'){
             steps {
                 script {
@@ -35,10 +33,8 @@ pipeline {
         }
     }   
     post {
-        /*
         success {
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-        }*/
         always {
             script {
                 def issues = scanForIssues tool: [$class: 'SonarQube']
